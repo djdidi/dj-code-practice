@@ -3,6 +3,8 @@ import { expect, test } from 'vitest';
 /**
  * 思路: 左右双指针
  * - 优先移动短板指针
+ *
+ * O(N)
  */
 function maxArea(height: number[]): number {
   let area = 0;
