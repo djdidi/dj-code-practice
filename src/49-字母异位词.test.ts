@@ -28,7 +28,6 @@ function groupAnagrams(strs: string[]): string[][] {
   return ans;
 }
 
-
 type LetterMap = Map<string, number>;
 
 /**

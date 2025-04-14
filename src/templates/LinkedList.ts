@@ -145,29 +145,3 @@ export class LinkedList<T = any> {
     return this.head;
   }
 }
-
-export const arrayToLinkedHead = (arr: any[]) => {
-  const linkedList = new LinkedList();
-  linkedList.appendFromArray(arr);
-  return linkedList.getHead();
-};
-
-export const arrayToLinkedList = (arr: any[]) => {
-  const linkedList = new LinkedList();
-  linkedList.appendFromArray(arr);
-  return linkedList;
-};
-
-export const revertLinkedList = (head: ListNode | null) => {
-  let prev = null;
-  let cur: ListNode | null = head;
-
-  while (cur) {
-    const nextTemp = cur.next;
-    cur.next = prev;
-    prev = cur;
-    cur = nextTemp;
-  }
-
-  return head;
-};
