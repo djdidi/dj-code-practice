@@ -5,7 +5,7 @@ import { AbstractStack } from './stack.abstract';
  * - 先进后出
  * - 只操作数组尾部
  */
-export class ArrayStack<T> implements AbstractStack<T> {
+export class ArrayStack<T = unknown> implements AbstractStack<T> {
   items: T[] = [];
 
   peek(): any {
@@ -29,6 +29,10 @@ export class ArrayStack<T> implements AbstractStack<T> {
   }
 
   isEmpty(): boolean {
-    return this.items.length === 0;
+    return this.size() === 0;
+  }
+
+  toArray(): T[] {
+    return this.items;
   }
 }

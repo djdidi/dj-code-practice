@@ -1,16 +1,7 @@
 /**
  * 链表板子 LinkedList / ListNode
  */
-
-export class ListNode<T = any> {
-  val: T;
-  next: ListNode<T> | null;
-
-  constructor(val: T) {
-    this.val = val;
-    this.next = null;
-  }
-}
+import { ListNode } from '@/templates/linked-list';
 
 export class LinkedList<T = any> {
   head: ListNode<T> | null = null;
@@ -19,22 +10,12 @@ export class LinkedList<T = any> {
 
   constructor(arr?: T[]) {
     if (Array.isArray(arr)) {
-      arr.forEach(item => this.append(item));
+      arr.forEach(item => this.insert(item));
     }
   }
 
   append(val: T) {
-    const newNode = new ListNode(val);
 
-    if (this.isEmpty()) {
-      this.head = newNode;
-      this.tail = newNode;
-    } else {
-      this.tail!.next = newNode;
-      this.tail = newNode;
-    }
-
-    this._size++;
   }
 
   prepend(val: T) {
@@ -51,7 +32,7 @@ export class LinkedList<T = any> {
     this._size++;
   }
 
-  insertAt(val: T, idx: number) {
+  insert(val: T, idx: number) {
     if (idx < 0 || idx > this.size()) {
       return;
     }
@@ -61,7 +42,7 @@ export class LinkedList<T = any> {
     }
 
     if (idx === this.size()) {
-      this.append(val);
+      this.insert(val);
     }
 
     const newNode = new ListNode(val);
@@ -136,7 +117,7 @@ export class LinkedList<T = any> {
   }
 
   appendFromArray(arr: T[]) {
-    arr.forEach(val => this.append(val));
+    arr.forEach(val => this.insert(val));
   }
 
   size() {

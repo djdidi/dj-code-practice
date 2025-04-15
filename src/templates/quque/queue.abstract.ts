@@ -1,4 +1,4 @@
-export abstract class AbstractQueue<T> {
+export abstract class AbstractQueue<T = unknown> {
   // 入队
   abstract enqueue(item: T): void;
 

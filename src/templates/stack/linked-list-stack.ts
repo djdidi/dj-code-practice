@@ -40,6 +40,10 @@ export class LinkedListStack<T = unknown> implements AbstractStack<T> {
   }
 
   isEmpty(): boolean {
-    return this.len === 0;
+    return this.size() === 0;
+  }
+
+  toArray(): T[] {
+    return LinkedListHelpers.toArray(this.head);
   }
 }

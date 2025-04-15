@@ -1,7 +1,7 @@
 import { describe, expect, test } from 'vitest';
-import { ArrayQueue, LinkedListQueue } from '@/templates/quque';
+import { ArrayQueue, LinkedListQueue, StackQueue } from '@/templates/quque';
 
-const Queue = ArrayQueue;
+const Queue = StackQueue;
 
 describe('queue', () => {
   test('enqueue', () => {
@@ -40,5 +40,18 @@ describe('queue', () => {
     expect(queue.isEmpty()).toEqual(false);
     queue.clear();
     expect(queue.isEmpty()).toEqual(true);
+  });
+
+  test('toArray', () => {
+    const queue = new Queue();
+    queue.enqueue(1);
+    queue.enqueue(2);
+    queue.enqueue(3);
+    queue.enqueue(4);
+
+    queue.dequeue();
+    queue.dequeue();
+
+    expect(queue.toArray()).toEqual([3, 4]);
   });
 });

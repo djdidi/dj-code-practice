@@ -1,6 +1,6 @@
 // stack.abstract.ts
 
-export abstract class AbstractStack<T> {
+export abstract class AbstractStack<T = unknown> {
   /**
    * 将元素压入栈顶
    */
@@ -30,4 +30,9 @@ export abstract class AbstractStack<T> {
    * 清空栈
    */
   abstract clear(): void;
+
+  /**
+   * 转换为数组
+   */
+  abstract toArray(): T[];
 }
