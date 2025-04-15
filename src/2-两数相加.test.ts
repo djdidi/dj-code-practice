@@ -1,6 +1,5 @@
-import { ListNode } from './templates/LinkedList';
+import { LinkedList, ListNode } from '@/templates/linked-list';
 import { expect, test } from 'vitest';
-import { arrayToLinkedHead } from './templates/LinkedListUtils';
 
 /**
  * 思路: 双指针
@@ -38,13 +37,13 @@ function addTwoNumbers(l1: ListNode | null, l2: ListNode | null): ListNode | nul
 }
 
 test('addTwoNumbers', () => {
-  expect(addTwoNumbers(arrayToLinkedHead([9, 9, 9, 9, 9, 9, 9]), arrayToLinkedHead([9, 9, 9, 9])))
-    .toEqual(arrayToLinkedHead([8, 9, 9, 9, 0, 0, 0, 1]));
+  expect(addTwoNumbers(new LinkedList([9, 9, 9, 9, 9, 9, 9]).getHead(), new LinkedList([9, 9, 9, 9]).getHead()))
+    .toEqual(new LinkedList([8, 9, 9, 9, 0, 0, 0, 1]).getHead());
 
   // 342 + 465 = 807
-  expect(addTwoNumbers(arrayToLinkedHead([2, 4, 3]), arrayToLinkedHead([5, 6, 4])))
-    .toEqual(arrayToLinkedHead([7, 0, 8]));
+  expect(addTwoNumbers(new LinkedList([2, 4, 3]).getHead(), new LinkedList([5, 6, 4]).getHead()))
+    .toEqual(new LinkedList([7, 0, 8]).getHead());
 
-  expect(addTwoNumbers(arrayToLinkedHead([0]), arrayToLinkedHead([0])))
-    .toEqual(arrayToLinkedHead([0]));
+  expect(addTwoNumbers(new LinkedList([0]).getHead(), new LinkedList([0]).getHead()))
+    .toEqual(new LinkedList([0]).getHead());
 });

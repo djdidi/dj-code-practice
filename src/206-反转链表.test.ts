@@ -1,6 +1,5 @@
-import { ListNode } from './templates/LinkedList';
+import { LinkedList, ListNode } from '@/templates/linked-list';
 import { expect, test } from 'vitest';
-import { arrayToLinkedHead } from './templates/LinkedListUtils';
 
 /**
  * 思路: 双指针 迭代法
@@ -42,7 +41,7 @@ function reverseList(head: ListNode | null): ListNode | null {
 }
 
 test('reverseList', () => {
-  expect(reverseList(arrayToLinkedHead([1, 2, 3, 4, 5]))).toEqual(arrayToLinkedHead([5, 4, 3, 2, 1]));
-  expect(reverseList(arrayToLinkedHead([1]))).toEqual(arrayToLinkedHead([1]));
+  expect(reverseList(new LinkedList([1, 2, 3, 4, 5]).getHead())).toEqual(new LinkedList([5, 4, 3, 2, 1]).getHead());
+  expect(reverseList(new LinkedList([1]).getHead())).toEqual(new LinkedList([1]).getHead());
   expect(reverseList(null)).toEqual(null);
 });

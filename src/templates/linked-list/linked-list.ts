@@ -17,6 +17,12 @@ export class LinkedList<T = any> {
   tail: ListNode<T> | null = null;
   _size = 0;
 
+  constructor(arr?: T[]) {
+    if (Array.isArray(arr)) {
+      arr.forEach(item => this.append(item));
+    }
+  }
+
   append(val: T) {
     const newNode = new ListNode(val);
 

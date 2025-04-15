@@ -1,7 +1,7 @@
 import { describe, expect, test } from 'vitest';
-import { arrayToLinkedList, LinkedList } from '../LinkedList';
+import { LinkedList } from '@/templates/linked-list';
 
-describe('LinkedList', () => {
+describe('linked-list', () => {
   test('append', () => {
     const linkedList = new LinkedList();
     linkedList.append(10);
@@ -19,19 +19,19 @@ describe('LinkedList', () => {
   });
 
   test('insertAt', () => {
-    const linkedList = arrayToLinkedList([10, 20, 30, 40]);
+    const linkedList = new LinkedList([10, 20, 30, 40]);
     linkedList.insertAt(35, 3);
     expect(linkedList.toArray()).toEqual([10, 20, 30, 35, 40]);
   });
 
   test('removeAt', () => {
-    const linkedList = arrayToLinkedList([10, 20, 30, 40]);
+    const linkedList = new LinkedList([10, 20, 30, 40]);
     linkedList.removeAt(0);
     expect(linkedList.toArray()).toEqual([20, 30, 40]);
   });
 
   test('revert', () => {
-    const linkedList = arrayToLinkedList([10, 20, 30, 40]);
+    const linkedList = new LinkedList([10, 20, 30, 40]);
     linkedList.revert();
     expect(linkedList.toArray()).toEqual([40, 30, 20, 10]);
   });

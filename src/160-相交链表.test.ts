@@ -1,4 +1,5 @@
-import { ListNode } from './templates/LinkedList';
+import { ListNode } from '@/templates/linked-list';
+import { test } from 'vitest';
 
 /**
  * 思路: 长度补齐，节省空间开销
@@ -21,7 +22,7 @@ function getIntersectionNode(headA: ListNode | null, headB: ListNode | null): Li
   }
 
   p1 = headA;
-  p2 = headB
+  p2 = headB;
   while (p1 !== null || p2 !== null) {
     // 相交
     if (p1 === p2) {
@@ -71,3 +72,5 @@ function getIntersectionNode2(headA: ListNode | null, headB: ListNode | null): L
 
   return null;
 }
+
+test('getIntersectionNode', () => {});
