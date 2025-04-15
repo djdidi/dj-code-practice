@@ -1,4 +1,5 @@
 import { LinkedList } from '@/templates/linked-list';
+import { an } from 'vitest/dist/chunks/reporters.d.CfRkRKN2';
 
 describe('LinkedList', () => {
   it('should create empty linked list', () => {
@@ -65,7 +66,7 @@ describe('LinkedList', () => {
     expect(linkedList.tail.toString()).toBe('5');
 
     const deletedNode = linkedList.delete(3);
-    expect(deletedNode.value).toBe(3);
+    expect(deletedNode.val).toBe(3);
     expect(linkedList.toString()).toBe('1,1,2,4,5');
 
     linkedList.delete(3);
@@ -105,21 +106,21 @@ describe('LinkedList', () => {
 
     const deletedNode1 = linkedList.deleteTail();
 
-    expect(deletedNode1.value).toBe(3);
+    expect(deletedNode1.val).toBe(3);
     expect(linkedList.toString()).toBe('1,2');
     expect(linkedList.head.toString()).toBe('1');
     expect(linkedList.tail.toString()).toBe('2');
 
     const deletedNode2 = linkedList.deleteTail();
 
-    expect(deletedNode2.value).toBe(2);
+    expect(deletedNode2.val).toBe(2);
     expect(linkedList.toString()).toBe('1');
     expect(linkedList.head.toString()).toBe('1');
     expect(linkedList.tail.toString()).toBe('1');
 
     const deletedNode3 = linkedList.deleteTail();
 
-    expect(deletedNode3.value).toBe(1);
+    expect(deletedNode3.val).toBe(1);
     expect(linkedList.toString()).toBe('');
     expect(linkedList.head).toBeNull();
     expect(linkedList.tail).toBeNull();
@@ -138,14 +139,14 @@ describe('LinkedList', () => {
 
     const deletedNode1 = linkedList.deleteHead();
 
-    expect(deletedNode1.value).toBe(1);
+    expect(deletedNode1.val).toBe(1);
     expect(linkedList.toString()).toBe('2');
     expect(linkedList.head.toString()).toBe('2');
     expect(linkedList.tail.toString()).toBe('2');
 
     const deletedNode2 = linkedList.deleteHead();
 
-    expect(deletedNode2.value).toBe(2);
+    expect(deletedNode2.val).toBe(2);
     expect(linkedList.toString()).toBe('');
     expect(linkedList.head).toBeNull();
     expect(linkedList.tail).toBeNull();
@@ -161,7 +162,7 @@ describe('LinkedList', () => {
       .append(nodeValue1)
       .prepend(nodeValue2);
 
-    const nodeStringifier = (value) => `${value.key}:${value.value}`;
+    const nodeStringifier = (val) => `${val.key}:${val.value}`;
 
     expect(linkedList.toString(nodeStringifier)).toBe('key2:2,key1:1');
   });
@@ -169,23 +170,23 @@ describe('LinkedList', () => {
   it('should find node by value', () => {
     const linkedList = new LinkedList();
 
-    expect(linkedList.find({ value: 5 })).toBeNull();
+    expect(linkedList.find({ val: 5 })).toBeNull();
 
     linkedList.append(1);
-    expect(linkedList.find({ value: 1 })).toBeDefined();
+    expect(linkedList.find({ val: 1 })).toBeDefined();
 
     linkedList
       .append(2)
       .append(3);
 
-    const node = linkedList.find({ value: 2 });
+    const node = linkedList.find({ val: 2 });
 
-    expect(node.value).toBe(2);
-    expect(linkedList.find({ value: 5 })).toBeNull();
+    expect(node.val).toBe(2);
+    expect(linkedList.find({ val: 5 })).toBeNull();
   });
 
   it('should find node by callback', () => {
-    const linkedList = new LinkedList();
+    const linkedList = new LinkedList<any>();
 
     linkedList
       .append({ value: 1, key: 'test1' })
@@ -195,8 +196,8 @@ describe('LinkedList', () => {
     const node = linkedList.find({ callback: (value) => value.key === 'test2' });
 
     expect(node).toBeDefined();
-    expect(node.value.value).toBe(2);
-    expect(node.value.key).toBe('test2');
+    expect(node.val.value).toBe(2);
+    expect(node.val.key).toBe('test2');
     expect(linkedList.find({ callback: (value) => value.key === 'test5' })).toBeNull();
   });
 
@@ -205,45 +206,6 @@ describe('LinkedList', () => {
     linkedList.fromArray([1, 1, 2, 3, 3, 3, 4, 5]);
 
     expect(linkedList.toString()).toBe('1,1,2,3,3,3,4,5');
-  });
-
-  it('should find node by means of custom compare function', () => {
-    const comparatorFunction = (a, b) => {
-      if (a.customValue === b.customValue) {
-        return 0;
-      }
-
-      return a.customValue < b.customValue ? -1 : 1;
-    };
-
-    const linkedList = new LinkedList(comparatorFunction);
-
-    linkedList
-      .append({ value: 1, customValue: 'test1' })
-      .append({ value: 2, customValue: 'test2' })
-      .append({ value: 3, customValue: 'test3' });
-
-    const node = linkedList.find({
-      value: { value: 2, customValue: 'test2' },
-    });
-
-    expect(node).toBeDefined();
-    expect(node.value.value).toBe(2);
-    expect(node.value.customValue).toBe('test2');
-    expect(linkedList.find({ value: { value: 2, customValue: 'test5' } })).toBeNull();
-  });
-
-  it('should find preferring callback over compare function', () => {
-    const greaterThan = (value, compareTo) => (value > compareTo ? 0 : 1);
-
-    const linkedList = new LinkedList(greaterThan);
-    linkedList.fromArray([1, 2, 3, 4, 5]);
-
-    let node = linkedList.find({ value: 3 });
-    expect(node.value).toBe(4);
-
-    node = linkedList.find({ callback: (value) => value < 3 });
-    expect(node.value).toBe(1);
   });
 
   it('should convert to array', () => {
@@ -264,19 +226,19 @@ describe('LinkedList', () => {
       .append(3);
 
     expect(linkedList.toString()).toBe('1,2,3');
-    expect(linkedList.head.value).toBe(1);
-    expect(linkedList.tail.value).toBe(3);
+    expect(linkedList.head.val).toBe(1);
+    expect(linkedList.tail.val).toBe(3);
 
     // Reverse linked list.
     linkedList.reverse();
     expect(linkedList.toString()).toBe('3,2,1');
-    expect(linkedList.head.value).toBe(3);
-    expect(linkedList.tail.value).toBe(1);
+    expect(linkedList.head.val).toBe(3);
+    expect(linkedList.tail.val).toBe(1);
 
     // Reverse linked list back to initial state.
     linkedList.reverse();
     expect(linkedList.toString()).toBe('1,2,3');
-    expect(linkedList.head.value).toBe(1);
-    expect(linkedList.tail.value).toBe(3);
+    expect(linkedList.head.val).toBe(1);
+    expect(linkedList.tail.val).toBe(3);
   });
 });

@@ -7,7 +7,6 @@ export class LinkedListNode<T = any> {
     this.next = next;
   }
 
-
   toString(stringifier?: (val: T) => string) {
     if (typeof stringifier === 'function') {
       return stringifier(this.val);
