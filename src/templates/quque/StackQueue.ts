@@ -1,5 +1,4 @@
 import { Stack } from '@/templates/stack';
-import { AbstractQueue } from '@/templates/quque/queue.abstract';
 
 /**
  * 队列: 栈实现 (优化版本)
@@ -13,7 +12,7 @@ import { AbstractQueue } from '@/templates/quque/queue.abstract';
  *
  * O(1)
  */
-export class StackQueue<T = unknown> implements AbstractQueue<T> {
+export class StackQueue<T = unknown> {
   inStack = new Stack<T>();
   outStack = new Stack<T>();
 
@@ -63,7 +62,7 @@ export class StackQueue<T = unknown> implements AbstractQueue<T> {
  *
  * O(N) + O(N) = O(N)
  */
-export class StackQueue2<T = unknown> implements AbstractQueue<T> {
+export class StackQueue2<T = unknown> {
   stack = new Stack<T>();
 
   reverseStack() {

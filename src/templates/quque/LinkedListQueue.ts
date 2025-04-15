@@ -1,4 +1,3 @@
-import { AbstractQueue } from '@/templates/quque/queue.abstract';
 import { LinkedListHelpers, ListNode } from '@/templates/linked-list';
 
 /**
@@ -7,7 +6,7 @@ import { LinkedListHelpers, ListNode } from '@/templates/linked-list';
  * - 进: 链表尾
  * - 出: 链表头
  */
-export class LinkedListQueue<T> implements AbstractQueue<T> {
+export class LinkedListQueue<T> {
   head: ListNode<T> | null = null;
   tail: ListNode<T> | null = null;
   len = 0;

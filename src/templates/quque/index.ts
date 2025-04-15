@@ -1,6 +1,4 @@
-export * from './queue.abstract';
-export * from './linked-list-queue';
-export * from './array-queue';
-export * from './stack-queue';
+export * from './LinkedListQueue';
+export * from './StackQueue';
 
-export { ArrayQueue as Queue } from './array-queue';
+export { LinkedListQueue as Queue } from './LinkedListQueue';

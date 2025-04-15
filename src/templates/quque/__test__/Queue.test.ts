@@ -1,7 +1,5 @@
 import { describe, expect, test } from 'vitest';
-import { ArrayQueue, LinkedListQueue, StackQueue } from '@/templates/quque';
-
-const Queue = StackQueue;
+import { Queue } from '@/templates/quque';
 
 describe('queue', () => {
   test('enqueue', () => {
