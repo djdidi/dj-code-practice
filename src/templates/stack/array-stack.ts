@@ -1,29 +1,34 @@
 import { AbstractStack } from './stack.abstract';
 
+/**
+ * 栈：数组实现
+ * - 先进后出
+ * - 只操作数组尾部
+ */
 export class ArrayStack<T> implements AbstractStack<T> {
-  arr: T[] = [];
+  items: T[] = [];
 
   peek(): any {
-    return this.arr[this.arr.length - 1];
+    return this.items[this.items.length - 1];
   }
 
   pop(): any {
-    return this.arr.pop();
+    return this.items.pop();
   }
 
   push(item: T): void {
-    this.arr.push(item);
+    this.items.push(item);
   }
 
   size(): number {
-    return this.arr.length;
+    return this.items.length;
   }
 
   clear(): void {
-    this.arr = [];
+    this.items = [];
   }
 
   isEmpty(): boolean {
-    return this.arr.length === 0;
+    return this.items.length === 0;
   }
 }

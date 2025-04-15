@@ -2,9 +2,9 @@ import { AbstractStack } from '@/templates/stack';
 import { LinkedListHelpers, ListNode } from '@/templates/linked-list';
 
 /**
- * 链表实现栈
- * - 先进先出
- * - 链表头插
+ * 栈：链表实现
+ * - 先进后出
+ * - 链表头插 node -> head
  */
 export class LinkedListStack<T = unknown> implements AbstractStack<T> {
   private head = null;
