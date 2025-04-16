@@ -1,61 +1,40 @@
-import { LinkedListHelpers, ListNode } from '@/templates/linked-list';
+import { LinkedList } from '@/templates/linked-list';
 
 /**
  * 队列: 链表实现
  * - 先进先出
- * - 进: 链表尾
- * - 出: 链表头
+ * - 队列的输出顺序：队头到队尾
+ * - 需要使用尾插
  */
 export class LinkedListQueue<T> {
-  head: ListNode<T> | null = null;
-  tail: ListNode<T> | null = null;
-  len = 0;
+  linkedList = new LinkedList<T>();
 
-  enqueue(item: T): void {
-    const newNode = new ListNode(item);
-    if (!this.head) {
-      this.head = newNode;
-      this.tail = newNode;
-    } else {
-      this.tail.next = newNode;
-      this.tail = newNode;
+  enqueue(item: T) {
+    this.linkedList.append(item);
+    return this;
+  }
+
+  dequeue(): T {
+    if (!this.linkedList.head) {
+      return null;
     }
 
-    this.len++;
+    return this.linkedList.deleteHead().val;
   }
 
-  dequeue(): T | undefined {
-    let val = this.front();
-
-    if (!this.head) {
-      return undefined;
+  peek(): T {
+    if (!this.linkedList.head) {
+      return null;
     }
 
-    this.head = this.head.next;
-    this.len--;
-
-    return val;
+    return this.linkedList.head.val;
   }
 
-  front(): T | undefined {
-    return this.head?.val;
+  isEmpty() {
+    return !this.linkedList.head;
   }
 
-  isEmpty(): boolean {
-    return !this.head;
-  }
-
-  size(): number {
-    return this.len;
-  }
-
-  clear(): void {
-    this.tail = null;
-    this.head = null;
-    this.len = 0;
-  }
-
-  toArray(): T[] {
-    return LinkedListHelpers.toArray(this.head);
+  toString(stringifier?: (val: T) => string) {
+    return this.linkedList.toString(stringifier);
   }
 }

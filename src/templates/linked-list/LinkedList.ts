@@ -125,7 +125,7 @@ export class LinkedList<T = unknown> {
    * 删 -> 头部
    * @return {ListNode}
    */
-  deleteHead(): ListNode<T> {
+  deleteHead(): ListNode<T> | null {
     if (!this.head) {
       return null;
     }
@@ -146,7 +146,7 @@ export class LinkedList<T = unknown> {
    * 删 -> 尾部
    * @return {ListNode}
    */
-  deleteTail(): ListNode<T> {
+  deleteTail(): ListNode<T> | null {
     let deleteNode = this.tail;
 
     // 只有一项 or 都为空

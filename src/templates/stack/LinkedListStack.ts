@@ -3,7 +3,8 @@ import { LinkedList, LinkedListHelpers, ListNode } from '@/templates/linked-list
 /**
  * 栈：链表实现
  * - 先进后出
- * - 链表头插 node2 -> node1 -> head
+ * - 需要链表头插 node2 -> node1 -> head
+ * - 因为栈的输出顺序是：从栈顶到栈底
  */
 export class LinkedListStack<T = unknown> {
   linkedList = new LinkedList<T>();

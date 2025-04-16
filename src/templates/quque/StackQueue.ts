@@ -4,7 +4,7 @@ import { Stack } from '@/templates/stack';
  * 队列: 栈实现 (优化版本)
  *
  * 1. inStack outStack 两个栈
- * 2. 每次出栈，把 in 倒腾道 out 里
+ * 2. 每次出栈，把 in 倒腾到 out 里
  * 3. 依次出 out 就是队列的顺序
  *
  * - 实现栈列表倒序
@@ -13,8 +13,8 @@ import { Stack } from '@/templates/stack';
  * O(1)
  */
 export class StackQueue<T = unknown> {
-  inStack = new Stack<T>();
-  outStack = new Stack<T>();
+  private inStack = new Stack<T>();
+  private outStack = new Stack<T>();
 
   in2Out() {
     while (!this.inStack.isEmpty()) {
@@ -33,7 +33,7 @@ export class StackQueue<T = unknown> {
     this.inStack.push(item);
   }
 
-  front(): T | undefined {
+  peek(): T | undefined {
     this.in2Out();
     return this.outStack.peek();
   }
@@ -46,13 +46,13 @@ export class StackQueue<T = unknown> {
     return this.inStack.size() + this.outStack.size();
   }
 
-  clear(): void {
-    this.inStack.clear();
-    this.outStack.clear();
+  toArray(): T[] {
+    return [...this.outStack.toArray(), ...this.inStack.toArray().reverse()];
   }
 
-  toArray(): T[] {
-    return [...this.outStack.toArray(), ...this.inStack.toArray()];
+  toString(stringifier?: (val: T) => string) {
+    this.in2Out();
+    return this.outStack.toString(stringifier);
   }
 }
 
@@ -60,60 +60,6 @@ export class StackQueue<T = unknown> {
  * 队列: 栈实现
  * - 反转栈，出栈，再反转回去
  *
- * O(N) + O(N) = O(N)
+ * 2*O(N) = O(N)
  */
-export class StackQueue2<T = unknown> {
-  stack = new Stack<T>();
-
-  reverseStack() {
-    let tempStack = new Stack<T>();
-    while (this.stack.size() > 0) {
-      tempStack.push(this.stack.pop());
-    }
-    this.stack = tempStack;
-  }
-
-  dequeue(): T | undefined {
-    // 倒腾到另一个栈里，拿到第一个入栈的值
-    this.reverseStack();
-
-    let val = this.stack.pop();
-
-    // 倒腾回去
-    this.reverseStack();
-
-    return val;
-  }
-
-  enqueue(item: T): void {
-    this.stack.push(item);
-  }
-
-  front(): T | undefined {
-    // 倒腾到另一个栈里，拿到第一个入栈的值
-    this.reverseStack();
-
-    let val = this.stack.peek();
-
-    // 倒腾回去
-    this.reverseStack();
-
-    return val;
-  }
-
-  isEmpty(): boolean {
-    return this.stack.size() === 0;
-  }
-
-  size(): number {
-    return this.stack.size();
-  }
-
-  clear(): void {
-    this.stack.clear();
-  }
-
-  toArray(): T[] {
-    return this.stack.toArray();
-  }
-}
+export class StackQueue2<T = unknown> {}
