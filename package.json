@@ -9,8 +9,9 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "packageManager": "pnpm@10.8.0",
+  "packageManager": "pnpm@10.11.0",
   "devDependencies": {
+    "prettier": "^3.5.3",
     "typescript": "^5.8.3",
     "vite": "^6.2.6",
     "vite-tsconfig-paths": "^5.1.4",

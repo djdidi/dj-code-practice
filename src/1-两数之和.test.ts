@@ -1,4 +1,4 @@
-import { expect, test } from 'vitest';
+import { expect, test } from "vitest";
 
 /**
  * 思路: 哈希表
@@ -8,14 +8,15 @@ import { expect, test } from 'vitest';
  * O(N)
  */
 function twoSum(nums: number[], target: number): number[] {
-  const map = new Map();
+  const map = new Map<number, { idx: number; val: number; }>();
 
   for (let i = 0; i < nums.length; i++) {
-    const idx = map.get(target - nums[i]);
-    if (Number.isInteger(idx)) {
-      return [idx, i];
+    const val = nums[i];
+
+    if (map.has(target - val)) {
+      return [map.get(target - val).idx, i];
     } else {
-      map.set(nums[i], i);
+      map.set(val, { idx: i, val });
     }
   }
 
@@ -70,7 +71,7 @@ function twoSum3(nums: number[], target: number) {
   }
 }
 
-test('twoSum', () => {
+test("twoSum", () => {
   expect(twoSum([2, 7, 11, 15], 9)).toEqual([0, 1]);
   expect(twoSum([3, 2, 4], 6)).toEqual([1, 2]);
   expect(twoSum([3, 3], 6)).toEqual([0, 1]);

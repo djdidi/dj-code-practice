@@ -10,40 +10,49 @@ import { expect, test } from 'vitest';
  * O(Max(M, N))
  */
 function addTwoNumbers(l1: ListNode | null, l2: ListNode | null): ListNode | null {
-  let ansHead = new ListNode(0);
-  let pAns = ansHead;
-
-  let p1 = l1;
-  let p2 = l2;
+  let l3 = new ListNode(-1);
+  let p3 = l3;
 
   let carry = 0;
 
-  while (p1 || p2) {
-    let sum = (p1?.val || 0) + (p2?.val || 0) + carry;
+  while (l1 || l2) {
+    const sum = (l1?.val || 0) + (l2?.val || 0) + carry;
     carry = sum >= 10 ? 1 : 0;
 
-    pAns.next = new ListNode(sum % 10);
-    pAns = pAns.next;
+    p3.next = new ListNode(sum >= 10 ? sum - 10 : sum);
+    p3 = p3.next;
 
-    p1 = p1?.next;
-    p2 = p2?.next;
+    l1 = l1?.next;
+    l2 = l2?.next;
   }
 
   if (carry === 1) {
-    pAns.next = new ListNode(1);
+    p3.next = new ListNode(1);
   }
 
-  return ansHead.next;
+  return l3.next;
 }
 
 test('addTwoNumbers', () => {
-  expect(addTwoNumbers(new LinkedList([9, 9, 9, 9, 9, 9, 9]).getHead(), new LinkedList([9, 9, 9, 9]).getHead()))
-    .toEqual(new LinkedList([8, 9, 9, 9, 0, 0, 0, 1]).getHead());
+  expect(
+    addTwoNumbers(
+      new LinkedList().fromArray([9, 9, 9, 9, 9, 9, 9]).head,
+      new LinkedList().fromArray([9, 9, 9, 9]).head,
+    ),
+  ).toEqual(new LinkedList().fromArray([8, 9, 9, 9, 0, 0, 0, 1]).head);
 
   // 342 + 465 = 807
-  expect(addTwoNumbers(new LinkedList([2, 4, 3]).getHead(), new LinkedList([5, 6, 4]).getHead()))
-    .toEqual(new LinkedList([7, 0, 8]).getHead());
+  expect(
+    addTwoNumbers(
+      new LinkedList().fromArray([2, 4, 3]).head,
+      new LinkedList().fromArray([5, 6, 4]).head,
+    ),
+  ).toEqual(new LinkedList().fromArray([7, 0, 8]).head);
 
-  expect(addTwoNumbers(new LinkedList([0]).getHead(), new LinkedList([0]).getHead()))
-    .toEqual(new LinkedList([0]).getHead());
+  expect(
+    addTwoNumbers(
+      new LinkedList().fromArray([0]).head,
+      new LinkedList().fromArray([0]).head,
+    ),
+  ).toEqual(new LinkedList().fromArray([0]).head);
 });
