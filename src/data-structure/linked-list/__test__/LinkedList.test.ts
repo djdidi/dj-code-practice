@@ -1,4 +1,4 @@
-import { LinkedList } from '@/templates/linked-list';
+import { LinkedList } from '@/data-structure/linked-list';
 import { an } from 'vitest/dist/chunks/reporters.d.CfRkRKN2';
 
 describe('LinkedList', () => {

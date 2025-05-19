@@ -1,4 +1,4 @@
-import { Stack } from '@/templates/stack';
+import { Stack } from '@/data-structure/stack';
 
 describe('Stack', () => {
   it('should create empty stack', () => {

@@ -1,4 +1,4 @@
-import { ListNode } from '@/templates/linked-list';
+import { ListNode } from '@/data-structure/linked-list';
 import { test } from 'vitest';
 
 /**

@@ -3,7 +3,7 @@
  * - 可以链式调用
  * - 不考虑异常case
  */
-import { ListNode } from '@/templates/linked-list';
+import { ListNode } from '@/data-structure/linked-list';
 
 export class LinkedList<T = unknown> {
   head: ListNode<T> | null = null;

@@ -1,10 +1,11 @@
-import { StackQueue as Queue } from '@/templates/quque';
+import { Queue } from '@/data-structure/quque';
 
 
-describe('StackQueue', () => {
+describe('Queue', () => {
   it('should create empty queue', () => {
     const queue = new Queue();
     expect(queue).not.toBeNull();
+    expect(queue.linkedList).not.toBeNull();
   });
 
   it('should enqueue data to queue', () => {

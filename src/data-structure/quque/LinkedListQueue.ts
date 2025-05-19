@@ -1,4 +1,4 @@
-import { LinkedList } from '@/templates/linked-list';
+import { LinkedList } from '@/data-structure/linked-list';
 
 /**
  * 队列: 链表实现

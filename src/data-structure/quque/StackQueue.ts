@@ -1,4 +1,4 @@
-import { Stack } from '@/templates/stack';
+import { Stack } from '@/data-structure/stack';
 
 /**
  * 队列: 栈实现 (优化版本)

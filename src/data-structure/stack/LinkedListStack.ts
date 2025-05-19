@@ -1,4 +1,4 @@
-import { LinkedList, LinkedListHelpers, ListNode } from '@/templates/linked-list';
+import { LinkedList } from '@/data-structure/linked-list';
 
 /**
  * 栈：链表实现
