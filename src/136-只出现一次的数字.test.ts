@@ -20,7 +20,6 @@ function singleNumber(nums: number[]): number {
   return ans;
 }
 
-
 /**
  * 思路：哈希表
  * - 遍历一次 map记录出现的次数
@@ -33,15 +32,15 @@ function singleNumber2(nums: number[]): number {
   let ans = -1;
   const map = new Map();
 
-  nums.forEach(num => {
+  nums.forEach((num) => {
     map.set(num, (map.get(num) || 0) + 1);
   });
 
-  nums.forEach(num => {
+  nums.forEach((num) => {
     if (map.get(num) === 1) {
       ans = num;
     }
-  })
+  });
 
   return ans;
 }

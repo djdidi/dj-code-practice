@@ -12,48 +12,18 @@ function longestConsecutive(nums: number[]): number {
 
   const set = new Set<number>(nums);
 
-  // 这里遍历 set 更少, 遍历 nums 超时
   for (const x of set) {
-    // 神来一笔
+    // 神来一笔：这样能找到连续数的第一个
     if (set.has(x - 1)) {
       continue;
     }
 
-    let y = x;
+    // 统计一下连续的长度
+    let y = x + 1;
     while (set.has(y)) {
       y++;
     }
     ans = Math.max(ans, y - x);
-  }
-
-  return ans;
-}
-
-/**
- * 思路: 排序 + 双指针滑动窗口
- *
- * O(NLogN) + O(N) = O(N)
- */
-function longestConsecutive3(nums: number[]): number {
-  if (nums.length === 0) {
-    return 0;
-  }
-
-  let ans = 1;
-
-  nums.sort((a, b) => a - b);
-  let p1 = 0;
-  let p2 = 1;
-
-  while (p2 < nums.length) {
-    if (nums[p2] === nums[p2 - 1] + 1) {
-      ans = Math.max(ans, p2 - p1 + 1);
-    } else if (nums[p2] === nums [p2 - 1]) {
-      p1++;
-    } else {
-      p1 = p2;
-    }
-    p2++;
   }
 
   return ans;

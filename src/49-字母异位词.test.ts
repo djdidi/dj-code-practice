@@ -1,94 +1,41 @@
 import { expect, test } from 'vitest';
 
 /**
- * 思路:
- * - 排序后字符串作为key
- * - map 存 key => 分组答案
+ * 字母异位词
+ * - 每个字母的数量一致
+ * - 字母排序后的字符串一致
+ *
+ * 思路：
+ * 1. 字母排序作为map的key
+ * 2. map的value存原始的异位词
  *
  * O(N * KLogK)
  */
 function groupAnagrams(strs: string[]): string[][] {
   const map = new Map<string, string[]>();
 
-  for (const str of strs) {
-    const sortedStr = [...str].sort().join('');
+  for (let i = 0; i < strs.length; i++) {
+    const sortedStr = strs[i].split('').sort().join('');
     if (map.has(sortedStr)) {
-      map.get(sortedStr).push(str);
+      map.get(sortedStr).push(strs[i]);
     } else {
-      map.set(sortedStr, [str]);
+      map.set(sortedStr, [strs[i]]);
     }
   }
 
-  const ans = [];
-
-  for (const [key, value] of map) {
-    ans.push(value);
-  }
-
-  return ans;
-}
-
-type LetterMap = Map<string, number>;
-
-/**
- * 无脑超时算法
- */
-function groupAnagrams2(strs: string[]): string[][] {
-  const strToLatterMap = (str: string) => {
-    // 字母 -> 出现次数
-    const map: LetterMap = new Map();
-
-    if (str === '') {
-      map.set('', 1);
-    }
-
-    for (const s of str) {
-      map.set(s, (map.get(s) || 0) + 1);
-    }
-    return map;
-  };
-
-  const diffLetterMap = (map1: LetterMap, map2: LetterMap) => {
-    if (map1.size !== map2.size) {
-      return false;
-    }
-
-    for (const [word, count] of map1) {
-      if (map2.get(word) !== count) {
-        return false;
-      }
-    }
-    return true;
-  };
-
-  const ansWithLetterMapList: { latterMap: LetterMap, ans: string[] }[] = [];
-
-  for (const str of strs) {
-    let isExist = false;
-    for (const { latterMap, ans } of ansWithLetterMapList) {
-      const currentLatterMap = strToLatterMap(str);
-      if (diffLetterMap(currentLatterMap, latterMap)) {
-        isExist = true;
-        ans.push(str);
-      }
-    }
-    if (!isExist) {
-      ansWithLetterMapList.push({ latterMap: strToLatterMap(str), ans: [str] });
-    }
-  }
-
-  return ansWithLetterMapList.map(({ ans }) => ans);
+  return [...map.values()];
 }
 
 test('groupAnagrams', () => {
   expect(groupAnagrams(['', 'b', ''])).toEqual([['', ''], ['b']]);
 
-  expect(groupAnagrams(['eat', 'tea', 'tan', 'ate', 'nat', 'bat']))
-    .toEqual([['eat', 'tea', 'ate'], ['tan', 'nat'], ['bat']]);
+  expect(groupAnagrams(['eat', 'tea', 'tan', 'ate', 'nat', 'bat'])).toEqual([
+    ['eat', 'tea', 'ate'],
+    ['tan', 'nat'],
+    ['bat'],
+  ]);
 
-  expect(groupAnagrams(['']))
-    .toEqual([['']]);
+  expect(groupAnagrams([''])).toEqual([['']]);
 
-  expect(groupAnagrams(['a']))
-    .toEqual([['a']]);
+  expect(groupAnagrams(['a'])).toEqual([['a']]);
 });
