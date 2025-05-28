@@ -1,4 +1,4 @@
-import { LinkedList, ListNode } from './LinkedList';
+import { ListNode } from '@/data-structure/linked-list';
 
 export const LinkedListHelpers = {
   /**
