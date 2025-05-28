@@ -1,8 +1,9 @@
 import { Stack } from '@/data-structure/stack';
 
 /**
- * 队列: 栈实现 (优化版本)
- *
+ * 队列：
+ * - 用两个栈实现
+ * - 遍历顺序：队头到队尾
  * 1. inStack outStack 两个栈
  * 2. 每次出栈，把 in 倒腾到 out 里
  * 3. 依次出 out 就是队列的顺序

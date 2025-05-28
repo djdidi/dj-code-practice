@@ -3,7 +3,8 @@ import { LinkedList } from '@/data-structure/linked-list';
 /**
  * 栈：链表实现
  * - 先进后出
- * - 头插法
+ * - 遍历顺序：栈顶到栈底
+ * - 插入顺序：头插头出
  */
 export class LinkedListStack<T = unknown> {
   linkedList = new LinkedList<T>();

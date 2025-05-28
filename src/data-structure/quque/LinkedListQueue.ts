@@ -1,10 +1,11 @@
 import { LinkedList } from '@/data-structure/linked-list';
 
 /**
- * 队列: 链表实现
+ * 队列：
  * - 先进先出
- * - 队列的输出顺序：队头到队尾
- * - 需要使用尾插
+ * - 链表实现
+ * - 遍历顺序：队头到队尾
+ * - 插入顺序：尾插头出
  */
 export class LinkedListQueue<T> {
   linkedList = new LinkedList<T>();
