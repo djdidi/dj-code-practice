@@ -112,7 +112,7 @@ export abstract class Heap<T = any> {
         const parentItem = this.parent(indexToRemove);
         if (
           this.hasLeftChild(indexToRemove) &&
-          (!parentItem || this.pairIsInCorrectOrder(parentItem, this.heapContainer[indexToRemove]))
+          (!parentItem || this.pairIsCorrectOrder(parentItem, this.heapContainer[indexToRemove]))
         ) {
           this.heapifyDown(indexToRemove);
         } else {
@@ -150,7 +150,7 @@ export abstract class Heap<T = any> {
     // 类似冒泡交换位置，直到堆顶
     while (
       this.hasParent(currentIndex) &&
-      !this.pairIsInCorrectOrder(this.parent(currentIndex), this.heapContainer[currentIndex])
+      !this.pairIsCorrectOrder(this.parent(currentIndex), this.heapContainer[currentIndex])
     ) {
       this.swap(currentIndex, this.getParentIndex(currentIndex));
       currentIndex = this.getParentIndex(currentIndex);
@@ -165,7 +165,7 @@ export abstract class Heap<T = any> {
       if (
         this.hasRightChild(currentIndex) &&
         // child 里找一个合适的与 parent 交换
-        this.pairIsInCorrectOrder(this.rightChild(currentIndex), this.leftChild(currentIndex))
+        this.pairIsCorrectOrder(this.rightChild(currentIndex), this.leftChild(currentIndex))
       ) {
         nextIndex = this.getRightChildIndex(currentIndex);
       } else {
@@ -173,7 +173,7 @@ export abstract class Heap<T = any> {
       }
 
       // 判断交换
-      if (this.pairIsInCorrectOrder(this.heapContainer[currentIndex], this.heapContainer[nextIndex])) {
+      if (this.pairIsCorrectOrder(this.heapContainer[currentIndex], this.heapContainer[nextIndex])) {
         break;
       }
 
@@ -183,7 +183,7 @@ export abstract class Heap<T = any> {
     }
   }
 
-  abstract pairIsInCorrectOrder(firstElement: T, secondElement: T): boolean;
+  abstract pairIsCorrectOrder(firstElement: T, secondElement: T): boolean;
 }
 
 export class Comparator {

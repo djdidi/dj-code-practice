@@ -1,6 +1,6 @@
 import { Heap } from '@/data-structure/heap/Heap';
 
-export class MinHeap extends Heap {
+export class MinHeap<T = any> extends Heap<T> {
   /**
    * Checks if pair of heap elements is in correct order.
    * For MinHeap the first element must be always smaller or equal.
@@ -10,7 +10,7 @@ export class MinHeap extends Heap {
    * @param {*} secondElement
    * @return {boolean}
    */
-  pairIsInCorrectOrder(firstElement, secondElement) {
+  pairIsCorrectOrder(firstElement: T, secondElement: T): boolean {
     return this.compare.lessThanOrEqual(firstElement, secondElement);
   }
 }
